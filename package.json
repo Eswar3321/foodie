@@ -1,0 +1,26 @@
+{
+  "name": "namasthe-react",
+  "version": "1.0.0",
+  "description": "App Ignition is teaching by Akshay",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "namasthe-react"
+  },
+  "keywords": [],
+  "author": "Eswar3321",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}
