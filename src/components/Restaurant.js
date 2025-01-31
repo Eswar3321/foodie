@@ -1,8 +1,11 @@
 import {CDN_URL} from "../utilities/constants"
+import {Link} from 'react-router-dom'
+
 
 const Restaurant = (props) => {
   const {name, cloudinaryImageId, cuisines, avgRating, sla} = props.resdata.info;
   return (
+    // <Link to="">
     <div className="card">
       <div className="card-header">
       <img src={CDN_URL+cloudinaryImageId} alt="food-card"/>
@@ -16,6 +19,7 @@ const Restaurant = (props) => {
       <button>View more</button>
       </div>
     </div>
+    // </Link>
   )
 }
 

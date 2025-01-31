@@ -75,17 +75,25 @@ body {
   justify-content: end;
 }
 
+.card-link {
+  display: flex;
+  flex: 1;
+  flex-grow: 0;
+  flex-direction: column;
+  
+}
+
 .card {
   display: flex;
   flex-direction: column;
   flex: 1;
-  flex-grow: 0;
   padding: 16px;
   border-radius: 12px;
   min-width: 276px;
   min-height: 100%;
   background-color: #fff;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .shimmer-card {
@@ -154,5 +162,5 @@ body {
 }
 
 .footer-container {
-  padding: 24px;
+  padding: 24px 0;
 }

@@ -1,18 +1,19 @@
 import {useState, useEffect} from 'react'
 import Restaurant from "./Restaurant"
 import Shimmer from "./Shimmer"
+import { RESTAURANTS } from '../utilities/constants'
+import { Link } from 'react-router-dom'
 
 const Body = () => {
-  let [searchInput, setsearchInput] = useState('');
+  let [searchInput, setsearchInput] = useState(0);
   let [restDataList, setrestDataList] = useState([]);
   const[filteredList, setFilteredList] = useState([]);
   
   const fetchData = async () => {
-    let data = await fetch("https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=17.37240&lng=78.43780&carousel=true&third_party_vendor=1");
+    let data = await fetch(RESTAURANTS);
     const json = await data.json();
-    console.log(data);
-    console.log(json);
-    const restList = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    const restList = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setrestDataList(restList);
     setFilteredList(restList)
   }
@@ -20,7 +21,7 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   },[]);
-
+  console.log(filteredList);
   return filteredList.length === 0 ? (<Shimmer />) : (
   <div className="body-container">
     <div className="filter-search-container">
@@ -40,7 +41,11 @@ const Body = () => {
       </div>
     </div>
     <div className="restaurants-container">
-      {filteredList.map(eachRestaurant => <Restaurant key={eachRestaurant.info.id} resdata={eachRestaurant}/>)}
+      {filteredList.map((eachRestaurant) => (
+        <Link className="card-link" key={eachRestaurant.info.id} to={"/restaurant/"+eachRestaurant.info.id}>
+        <Restaurant resdata={eachRestaurant}/>
+        </Link>
+        ))}
     </div>
   </div>  
   )
