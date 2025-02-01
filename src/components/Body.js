@@ -11,7 +11,9 @@ const Body = () => {
   
   const fetchData = async () => {
     let data = await fetch(RESTAURANTS);
+    console.log(data);
     const json = await data.json();
+    console.log(json);
     console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     const restList = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setrestDataList(restList);
