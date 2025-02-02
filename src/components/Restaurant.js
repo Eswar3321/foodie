@@ -5,13 +5,12 @@ import {Link} from 'react-router-dom'
 const Restaurant = (props) => {
   const {name, cloudinaryImageId, cuisines, avgRating, sla} = props.resdata.info;
   return (
-    // <Link to="">
-    <div className="card">
+    <div className="card w-60  p-4 rounded-3xl bg-amber-400">
       <div className="card-header">
-      <img src={CDN_URL+cloudinaryImageId} alt="food-card"/>
+      <img className="rounded-2xl h-60 " src={CDN_URL+cloudinaryImageId} alt="food-card"/>
       </div>
       <div className="card-body">
-      <h4>{name}</h4>
+      <h3 className="my-4">{name}</h3>
       <p>{cuisines}</p>
       <p>
       <span className="rating">Rating: {avgRating}</span><span>{sla.deliveryTime} min</span>
@@ -19,7 +18,6 @@ const Restaurant = (props) => {
       <button>View more</button>
       </div>
     </div>
-    // </Link>
   )
 }
 
