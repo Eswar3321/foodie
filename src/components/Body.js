@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import Restaurant from "./Restaurant"
 import Shimmer from "./Shimmer"
 import { RESTAURANTS } from '../utilities/constants'
+import useOnlineStatus from '../utilities/useOnlineStatus'
 import { Link } from 'react-router-dom'
 
 const Body = () => {
@@ -24,6 +25,10 @@ const Body = () => {
     fetchData();
   },[]);
   console.log(filteredList);
+
+  if(useOnlineStatus() === false) return <h1>Look like you are offline. Please check Internet Connection</h1>
+
+
   return filteredList.length === 0 ? (<Shimmer />) : (
   <div className="body-container">
     <div className="filter-search-container">
