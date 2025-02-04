@@ -1,30 +1,30 @@
-import {useState, useEffect} from 'react'
-import Restaurant from "./Restaurant"
+import {useState, useEffect, useContext} from 'react'
+import Restaurant, {withPromotedLabel} from "./Restaurant"
 import Shimmer from "./Shimmer"
 import { RESTAURANTS } from '../utilities/constants'
 import useOnlineStatus from '../utilities/useOnlineStatus'
+import UserContext from '../utilities/UserContext'
 import { Link } from 'react-router-dom'
 
 const Body = () => {
   let [searchInput, setsearchInput] = useState('');
   let [restDataList, setrestDataList] = useState([]);
-  const[filteredList, setFilteredList] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
+
+  const RestaurantPromoted = withPromotedLabel(Restaurant);
+  const {loggedInUser, setUserName} = useContext(UserContext);
   
   const fetchData = async () => {
     let data = await fetch(RESTAURANTS);
-    console.log(data);
     const json = await data.json();
-    console.log(json);
-    console.log(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     const restList = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
     setrestDataList(restList);
-    setFilteredList(restList)
+    setFilteredList(restList);
   }
 
   useEffect(() => {
     fetchData();
   },[]);
-  console.log(filteredList);
 
   if(useOnlineStatus() === false) return <h1>Look like you are offline. Please check Internet Connection</h1>
 
@@ -46,11 +46,15 @@ const Body = () => {
           setFilteredList(filteredData);
         }} />
       </div>
+      <div className="user-name">
+        <label htmlFor="">User Name:</label>
+        <input type="text" placeholder='User Name' className="border-1 rounded-md px-2 ml-4" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>        
+      </div>
     </div>
     <div className="restaurants-container mt-6 flex gap-4 flex-wrap">
-      {filteredList.map((eachRestaurant) => (
+      {filteredList.map((eachRestaurant) => (        
         <Link className="card-link flex" key={eachRestaurant.info.id} to={"/restaurant/"+eachRestaurant.info.id}>
-        <Restaurant resdata={eachRestaurant}/>
+        {eachRestaurant.info.promoted ? <RestaurantPromoted resdata={eachRestaurant}/> : <Restaurant resdata={eachRestaurant}/>}
         </Link>
         ))}
     </div>

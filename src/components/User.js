@@ -10,7 +10,7 @@ const User = ({name}) => {
     //   console.log(data);
     // }
     // fetchData();
-    const interval = setInterval(() => {console.log("Calling from useEfeect fn")},1000);
+    const interval = setInterval(() => {console.log("Calling from useEfeect fn")}, 1000);
     return(() => {
       clearInterval(interval);
     }); 

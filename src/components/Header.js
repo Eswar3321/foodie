@@ -1,13 +1,17 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {BRAND_LOGO} from "../utilities/constants"
 import useOnlineStatus from '../utilities/useOnlineStatus'
+import UserContext from '../utilities/UserContext'
 
 
 const Header = () => {
   const [btnText, setbtnText] = useState('Log In');
 
   useEffect(() => {"I was called"});
+
+  const {loggedInUser} = useContext(UserContext);
+
 
   return (
     <div className="flex justify-between items-center bg-amber-100 shadow-2xl">
@@ -23,6 +27,7 @@ const Header = () => {
             <button className="border-1 rounded-md px-4 bg-amber-50" onClick={(() => btnText === 'Log In' ? setbtnText("Log Out" ): setbtnText("Log In"))}>{btnText}
             </button>
           </li>
+          <li>{loggedInUser}</li>
         </ul>
       </div>
     </div>
