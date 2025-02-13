@@ -1,7 +1,14 @@
 import { CDN_URL } from "../utilities/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utilities/cardSlice";
 
 const ItemsList = ({itemCards}) => {
-  console.log(itemCards)
+  
+  const dispatch = useDispatch(); 
+  const handleAdd = (item) => {
+    dispatch(addItem(item));
+  }
+
   return (
     <div>
       {itemCards.map((item) => (
@@ -14,12 +21,12 @@ const ItemsList = ({itemCards}) => {
           </div>
           <div className="text-center relative flex justify-center pb-6">
             <img className="w-48 h-48 rounded-2xl" src={CDN_URL + item?.card?.info?.imageId} alt="item-image" />
-            <button className="px-8 py-2 text-green-500 bold text-3xl bg-white rounded-2xl border-gray-100 absolute shaow-lg bottom-0">Add</button>
+            <button onClick={() => handleAdd(item)} className="px-8 py-2 text-green-500 bold text-3xl bg-white rounded-2xl border-gray-100 absolute shaow-lg bottom-0">Add</button>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default ItemsList
+export default ItemsList;

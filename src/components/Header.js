@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import {BRAND_LOGO} from "../utilities/constants"
 import useOnlineStatus from '../utilities/useOnlineStatus'
 import UserContext from '../utilities/UserContext'
+import { useSelector } from 'react-redux'
 
 
 const Header = () => {
@@ -11,7 +12,8 @@ const Header = () => {
   useEffect(() => {"I was called"});
 
   const {loggedInUser} = useContext(UserContext);
-
+  const cart = useSelector((store) => store.cart.items);
+  
 
   return (
     <div className="flex justify-between items-center bg-amber-100 shadow-2xl">
@@ -23,11 +25,12 @@ const Header = () => {
           <li className="mr-2"><Link to="/about">About</Link></li>
           <li className="mr-2"><Link to="/contact">Contact Us</Link></li>
           <li className="mr-2"><Link to="/instamart">Instamart</Link></li>
+          <li>{loggedInUser}</li>
           <li className="mr-2">
             <button className="border-1 rounded-md px-4 bg-amber-50" onClick={(() => btnText === 'Log In' ? setbtnText("Log Out" ): setbtnText("Log In"))}>{btnText}
             </button>
           </li>
-          <li>{loggedInUser}</li>
+          <li className="font-bold text-xl"><Link to="/cart">Cart-({cart.length})</Link></li>
         </ul>
       </div>
     </div>

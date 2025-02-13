@@ -51,7 +51,7 @@ const Body = () => {
         <input type="text" placeholder='User Name' className="border-1 rounded-md px-2 ml-4" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>        
       </div>
     </div>
-    <div className="restaurants-container mt-6 flex gap-4 flex-wrap">
+    <div className="restaurants-container mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-6">
       {filteredList.map((eachRestaurant) => (        
         <Link className="card-link flex" key={eachRestaurant.info.id} to={"/restaurant/"+eachRestaurant.info.id}>
         {eachRestaurant.info.promoted ? <RestaurantPromoted resdata={eachRestaurant}/> : <Restaurant resdata={eachRestaurant}/>}
