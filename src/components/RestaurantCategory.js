@@ -7,8 +7,7 @@ const RestaurantCategory = ({data, showItems, setShowIndex}) => {
   }
 
   return (
-    <div className="w-8/12 m-auto bg-amber-100 mb-2 shadow-gray-300">
-      {/* Header */}
+    <div className="w-8/12 m-auto bg-gray-200 mb-2 shadow-gray-300">
       <div className="p-6">
         <div className="flex justify-between cursor-pointer" onClick={onToggle}>
           <h3 className="font-bold text-xl">{data.title} ({data.itemCards.length})</h3>

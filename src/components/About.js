@@ -16,7 +16,7 @@ class About extends Component {
   render() {
     console.log("Parent Render")
     return (
-      <div>
+      <div className="m-10">
         <h1>Hello About</h1>
         <UserContext.Consumer>
           {(({loggedInUser})=> (<h2 className="font-bold">{loggedInUser}</h2>))}

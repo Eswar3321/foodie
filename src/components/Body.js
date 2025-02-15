@@ -17,9 +17,8 @@ const Body = () => {
   const fetchData = async () => {
     let data = await fetch(RESTAURANTS);
     const json = await data.json();
-    const restList = json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-    setrestDataList(restList);
-    setFilteredList(restList);
+    setrestDataList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   useEffect(() => {
@@ -30,31 +29,33 @@ const Body = () => {
 
 
   return filteredList.length === 0 ? (<Shimmer />) : (
-  <div className="mt-8 flex flex-col m-10">
-    <div className="flex gap-2 mb-6 items-center">
+  <div className="mt-8 flex flex-col px-4 md:px-8">
+    <div className="flex flex-col gap-2 mb-4 items-start">
       <div className="filter-container">
         <button className="border-1 rounded-md px-1 py-0.5" onClick={() => {
-          topRatedList = restDataList.filter((each) => each.info.avgRating > 4);
+          const topRatedList = restDataList.filter((each) => each.info.avgRating > 4.5);
           setFilteredList(topRatedList);
         }}>Top Rated</button>
       </div>
       <div className="search-container">
-        <input className="border-1 rounded-md px-4" type="search" placeholder='Search' value={searchInput} onChange={(e) => {
+        <input className="border-1 rounded-md px-4" type="search" placeholder='Search' value={searchInput} data-testid="searchInput" onChange={(e) => {
           e.preventDefault();
-          setsearchInput(e.target.value);
-          const filteredData = restDataList.filter((each) => (each.info.name.toLowerCase().includes(e.target.value.toLowerCase())));
-          setFilteredList(filteredData);
+          setsearchInput(e.target.value);          
         }} />
+        <button className="border border-black rounded-lg px-2 bg-gray-200 ml-2" onClick={() => {
+          const filteredData = restDataList.filter((each) => (each.info.name.toLowerCase().includes(searchInput.toLowerCase())));
+          setFilteredList(filteredData);
+        }}>Search</button>
       </div>
       <div className="user-name">
         <label htmlFor="">User Name:</label>
-        <input type="text" placeholder='User Name' className="border-1 rounded-md px-2 ml-4" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>        
+        <input type="text" placeholder='User Name' className="border-1 rounded-md px-2 ml-4" data-testid="userNameInput" value={loggedInUser} onChange={(e) => setUserName(e.target.value)}/>        
       </div>
     </div>
-    <div className="restaurants-container mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 lg:grid-cols-6">
+    <div className="restaurants-container mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 xl:grid-cols-6">
       {filteredList.map((eachRestaurant) => (        
-        <Link className="card-link flex" key={eachRestaurant.info.id} to={"/restaurant/"+eachRestaurant.info.id}>
-        {eachRestaurant.info.promoted ? <RestaurantPromoted resdata={eachRestaurant}/> : <Restaurant resdata={eachRestaurant}/>}
+        <Link className="card-link contents" key={eachRestaurant.info.id} to={"/restaurant/"+eachRestaurant.info.id}>
+        {eachRestaurant.info.promoted ? <RestaurantPromoted resdata={eachRestaurant.info}/> : <Restaurant resdata={eachRestaurant.info}/>}
         </Link>
         ))}
     </div>

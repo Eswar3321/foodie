@@ -22,7 +22,7 @@ const App = () => {
   useEffect(() => {
     // Make api cal and get data 
     const data = {
-      name: "Eswar"
+      name: "User Name"
     };
     setUserName(data.name);
   },[])
@@ -30,7 +30,7 @@ const App = () => {
   return (
     <Provider store={appStore}>
       <UserContext.Provider value={{loggedInUser: userName, setUserName}} >
-        <div>
+        <div className="max-w-[1440px] m-auto">
           <Header />
           <Outlet />
           <Footer />
