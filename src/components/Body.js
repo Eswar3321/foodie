@@ -42,7 +42,7 @@ const Body = () => {
           e.preventDefault();
           setsearchInput(e.target.value);          
         }} />
-        <button className="border border-black rounded-lg px-2 bg-gray-200 ml-2" onClick={() => {
+        <button className="border border-black rounded-lg px-2 bg-gray-200 ml-2 cursor-pointer" onClick={() => {
           const filteredData = restDataList.filter((each) => (each.info.name.toLowerCase().includes(searchInput.toLowerCase())));
           setFilteredList(filteredData);
         }}>Search</button>

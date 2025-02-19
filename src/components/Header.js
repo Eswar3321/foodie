@@ -18,7 +18,7 @@ const Header = () => {
     <div className="flex flex-col items-start p-4 shadow-2xl lg:flex-row lg:items-center lg:justify-between">
       <div className="mb-4 lg:mb-0 flex items-center">
         <img alt="brand-logo" src={BRAND_LOGO} className="w-20" />
-        <span className="text-2xl">Foody</span>
+        <span className="text-2xl">Foodie</span>
       </div>
       <div >
         <ul className="flex flex-col gap-4 mr-4 lg:flex-row">
@@ -29,7 +29,7 @@ const Header = () => {
           <li className="mr-2">{loggedInUser}</li>
           <li className="mr-2">Online Status:{useOnlineStatus() ? "🟢" : "🔴"}</li>
           <li className="mr-2">
-            <button className="border-1 rounded-md px-4 bg-amber-50" onClick={(() => btnText === 'Log In' ? setbtnText("Log Out" ): setbtnText("Log In"))}>{btnText}
+            <button className="border-1 rounded-md px-4 bg-amber-50 cursor-pointer" onClick={(() => btnText === 'Log In' ? setbtnText("Log Out" ): setbtnText("Log In"))}>{btnText}
             </button>
           </li>
           <li className="font-bold text-xl"><Link to="/cart"><button>Cart-({cart.length})</button></Link></li>

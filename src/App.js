@@ -22,7 +22,7 @@ const App = () => {
   useEffect(() => {
     // Make api cal and get data 
     const data = {
-      name: "User Name"
+      name: "User"
     };
     setUserName(data.name);
   },[])

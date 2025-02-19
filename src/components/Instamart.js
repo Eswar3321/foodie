@@ -1,6 +1,6 @@
 const Instamart = () => {
   return(
-    <h1>Hey This is Instamart</h1>
+    <h1 className="m-8 text-3xl">Hey This is Instamart</h1>
   )
 }
 

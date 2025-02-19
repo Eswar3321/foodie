@@ -13,9 +13,9 @@ const Restaurant = (props) => {
       <h3 className="my-2 text-xl">{name}</h3>
       <p>{cuisines.join(', ')}</p>
       <p className="flex-grow">
-      <span className="rating">Rating: {avgRating}</span><span className="block">{sla.deliveryTime} min</span>
+      <span className="rating">Rating: {avgRating}</span><span className="block">Delivery in {sla.deliveryTime} min</span>
       </p>
-      <button>View more</button>
+      <button className="cursor-pointer">View more</button>
       </div>
     </div>
   )
