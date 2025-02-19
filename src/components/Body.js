@@ -32,7 +32,7 @@ const Body = () => {
   <div className="mt-8 flex flex-col px-4 md:px-8">
     <div className="flex flex-col gap-2 mb-4 items-start">
       <div className="filter-container">
-        <button className="border-1 rounded-md px-1 py-0.5" onClick={() => {
+        <button className="border-1 rounded-md px-1 py-0.5 cursor-pointer" onClick={() => {
           const topRatedList = restDataList.filter((each) => each.info.avgRating > 4.5);
           setFilteredList(topRatedList);
         }}>Top Rated</button>

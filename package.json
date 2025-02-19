@@ -1,16 +1,18 @@
 {
-  "name": "namasthe-react",
+  "homepage": "https://eswar3321.github.io/foodie",
+  "name": "foodie",
   "version": "1.0.0",
-  "description": "App Ignition is teaching by Akshay",
-  "main": "App.js",
+  "description": "Food ordering app",
   "scripts": {
     "test": "jest",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --public-url ./",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "namasthe-react"
+    "url": "foodie"
   },
   "keywords": [],
   "author": "Eswar3321",
