@@ -29,7 +29,7 @@ const App = () => {
 
   return (
     <Provider store={appStore}>
-      <UserContext.Provider value={{loggedInUser: userName, setUserName}} >
+      <UserContext.Provider value={{loggedInUser: userName, setUserName}}>
         <div className="max-w-[1440px] m-auto">
           <Header />
           <Outlet />

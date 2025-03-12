@@ -18,10 +18,10 @@ const Body = () => {
   const fetchData = async () => {
     let data = await fetch(RESTAURANTS);
     const json = await data.json();
-    // setrestDataList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    // setFilteredList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setrestDataList(RestCards);
-    setFilteredList(RestCards);
+    setrestDataList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setrestDataList(RestCards);
+    // setFilteredList(RestCards);
   }
 
   useEffect(() => {
