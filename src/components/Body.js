@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer"
 import { RESTAURANTS } from '../utilities/constants'
 import useOnlineStatus from '../utilities/useOnlineStatus'
 import UserContext from '../utilities/UserContext'
+import { RestCards } from '../utilities/RestCards'
 import { Link } from 'react-router-dom'
 
 const Body = () => {
@@ -17,8 +18,10 @@ const Body = () => {
   const fetchData = async () => {
     let data = await fetch(RESTAURANTS);
     const json = await data.json();
-    setrestDataList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setrestDataList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    // setFilteredList(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setrestDataList(RestCards);
+    setFilteredList(RestCards);
   }
 
   useEffect(() => {
@@ -26,16 +29,20 @@ const Body = () => {
   },[]);
 
   if(useOnlineStatus() === false) return <h1>Look like you are offline. Please check Internet Connection</h1>
-
+  const handleClearFilter = () => {
+    setFilteredList(RestCards);
+    setsearchInput('');
+  } 
 
   return filteredList.length === 0 ? (<Shimmer />) : (
   <div className="mt-8 flex flex-col px-4 md:px-8">
     <div className="flex flex-col gap-2 mb-4 items-start">
       <div className="filter-container">
-        <button className="border-1 rounded-md px-1 py-0.5 cursor-pointer" onClick={() => {
+        <button className="border-1 rounded-md px-1 py-0.5 cursor-pointer bg-gray-200" onClick={() => {
           const topRatedList = restDataList.filter((each) => each.info.avgRating > 4.5);
           setFilteredList(topRatedList);
         }}>Top Rated</button>
+        <button className="border-1 rounded-md px-1 py-0.5 cursor-pointer ml-2 bg-gray-200" onClick={handleClearFilter}>Clear Filter</button>
       </div>
       <div className="search-container">
         <input className="border-1 rounded-md px-4" type="search" placeholder='Search' value={searchInput} data-testid="searchInput" onChange={(e) => {
